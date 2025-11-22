@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 export const DuskHeroVisual = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -12,8 +12,8 @@ export const DuskHeroVisual = () => {
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
 
-    const stars: {x: number, y: number, size: number, alpha: number, speed: number}[] = [];
-    const embers: {x: number, y: number, size: number, speedY: number, speedX: number, alpha: number, decay: number}[] = [];
+    const stars: { x: number, y: number, size: number, alpha: number, speed: number }[] = [];
+    const embers: { x: number, y: number, size: number, speedY: number, speedX: number, alpha: number, decay: number }[] = [];
 
     // Init stars
     for (let i = 0; i < 150; i++) {
@@ -27,9 +27,9 @@ export const DuskHeroVisual = () => {
     }
 
     // Generate static tree positions once
-    const treeLayer1: {x: number, w: number, amp: number, offset: number}[] = [];
-    const treeLayer2: {x: number, w: number, amp: number}[] = [];
-    const treeLayer3: {x: number, w: number, amp: number}[] = [];
+    const treeLayer1: { x: number, w: number, amp: number, offset: number }[] = [];
+    const treeLayer2: { x: number, w: number, amp: number }[] = [];
+    const treeLayer3: { x: number, w: number, amp: number }[] = [];
 
     // Layer 1: Tallest trees (foreground)
     let x = 0;
@@ -59,51 +59,52 @@ export const DuskHeroVisual = () => {
       x += w;
     }
 
-    const drawTrees = () => {
-       // Layer 1: Tallest trees (foreground)
-       ctx.fillStyle = '#030305';
-       ctx.beginPath();
-       ctx.moveTo(0, height);
-       treeLayer1.forEach(tree => {
-         const treeHeight = height - tree.amp - tree.offset;
-         ctx.lineTo(tree.x + tree.w * 0.2, treeHeight);
-         ctx.lineTo(tree.x + tree.w * 0.3, treeHeight - 20);
-         ctx.lineTo(tree.x + tree.w * 0.7, treeHeight - 20);
-         ctx.lineTo(tree.x + tree.w * 0.8, treeHeight);
-         ctx.lineTo(tree.x + tree.w, height);
-       });
-       ctx.lineTo(width, height);
-       ctx.fill();
-       
-       // Layer 2: Medium trees (mid-ground)
-       ctx.fillStyle = '#060609';
-       ctx.beginPath();
-       ctx.moveTo(0, height);
-       treeLayer2.forEach(tree => {
-         const treeHeight = height - tree.amp;
-         ctx.lineTo(tree.x + tree.w * 0.25, treeHeight);
-         ctx.lineTo(tree.x + tree.w * 0.4, treeHeight - 15);
-         ctx.lineTo(tree.x + tree.w * 0.6, treeHeight - 15);
-         ctx.lineTo(tree.x + tree.w * 0.75, treeHeight);
-         ctx.lineTo(tree.x + tree.w, height);
-       });
-       ctx.lineTo(width, height);
-       ctx.fill();
-       
-       // Layer 3: Distant trees (background)
-       ctx.fillStyle = '#0A0A12';
-       ctx.beginPath();
-       ctx.moveTo(0, height);
-       treeLayer3.forEach(tree => {
-         ctx.bezierCurveTo(
-           tree.x + tree.w/3, height - tree.amp,
-           tree.x + 2*tree.w/3, height - tree.amp,
-           tree.x + tree.w, height
-         );
-       });
-       ctx.lineTo(width, height);
-       ctx.fill();
-    };
+    // Unused tree drawing function - kept for potential future use
+    // const drawTrees = () => {
+    //    // Layer 1: Tallest trees (foreground)
+    //    ctx.fillStyle = '#030305';
+    //    ctx.beginPath();
+    //    ctx.moveTo(0, height);
+    //    treeLayer1.forEach(tree => {
+    //      const treeHeight = height - tree.amp - tree.offset;
+    //      ctx.lineTo(tree.x + tree.w * 0.2, treeHeight);
+    //      ctx.lineTo(tree.x + tree.w * 0.3, treeHeight - 20);
+    //      ctx.lineTo(tree.x + tree.w * 0.7, treeHeight - 20);
+    //      ctx.lineTo(tree.x + tree.w * 0.8, treeHeight);
+    //      ctx.lineTo(tree.x + tree.w, height);
+    //    });
+    //    ctx.lineTo(width, height);
+    //    ctx.fill();
+    //    
+    //    // Layer 2: Medium trees (mid-ground)
+    //    ctx.fillStyle = '#060609';
+    //    ctx.beginPath();
+    //    ctx.moveTo(0, height);
+    //    treeLayer2.forEach(tree => {
+    //      const treeHeight = height - tree.amp;
+    //      ctx.lineTo(tree.x + tree.w * 0.25, treeHeight);
+    //      ctx.lineTo(tree.x + tree.w * 0.4, treeHeight - 15);
+    //      ctx.lineTo(tree.x + tree.w * 0.6, treeHeight - 15);
+    //      ctx.lineTo(tree.x + tree.w * 0.75, treeHeight);
+    //      ctx.lineTo(tree.x + tree.w, height);
+    //    });
+    //    ctx.lineTo(width, height);
+    //    ctx.fill();
+    //    
+    //    // Layer 3: Distant trees (background)
+    //    ctx.fillStyle = '#0A0A12';
+    //    ctx.beginPath();
+    //    ctx.moveTo(0, height);
+    //    treeLayer3.forEach(tree => {
+    //      ctx.bezierCurveTo(
+    //        tree.x + tree.w/3, height - tree.amp,
+    //        tree.x + 2*tree.w/3, height - tree.amp,
+    //        tree.x + tree.w, height
+    //      );
+    //    });
+    //    ctx.lineTo(width, height);
+    //    ctx.fill();
+    // };
 
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
@@ -153,7 +154,7 @@ export const DuskHeroVisual = () => {
         ember.y -= ember.speedY;
         ember.x += ember.speedX;
         ember.alpha -= ember.decay;
-        
+
         if (ember.alpha <= 0) {
           embers.splice(i, 1);
         } else {
@@ -164,7 +165,7 @@ export const DuskHeroVisual = () => {
           ctx.fillStyle = gradient;
           ctx.arc(ember.x, ember.y, ember.size * 4, 0, Math.PI * 2);
           ctx.fill();
-          
+
           ctx.fillStyle = `rgba(255, 216, 188, ${ember.alpha})`;
           ctx.beginPath();
           ctx.arc(ember.x, ember.y, ember.size, 0, Math.PI * 2);

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../theme/ThemeContext';
 import { TopThemeToggle } from './TopThemeToggle';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Cpu, Layers, Zap } from 'lucide-react';
 
