@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Bot, Terminal, MessageSquare, Sparkles, ArrowRight, ArrowDown, Figma } from 'lucide-react';
+import { GlowCard } from '../ui/GlowCard';
 
 const steps = [
   { name: 'Gemini', role: 'Ideation', icon: Sparkles, color: 'text-blue-500', bg: 'bg-blue-50' },
@@ -14,7 +15,7 @@ export const AICollaboration = () => {
   return (
     <section className="py-24 px-6">
       <div className="container max-w-5xl mx-auto">
-        <motion.h2 
+        <motion.h2
           className="text-3xl font-bold text-slate-800 mb-16 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -30,22 +31,23 @@ export const AICollaboration = () => {
           {steps.map((step, index) => (
             <React.Fragment key={index}>
               <motion.div
-                className="flex flex-col items-center relative bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-white shadow-sm w-full md:w-48"
+                className="w-full md:w-48"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2 }}
               >
-                <div className={`w-14 h-14 rounded-xl ${step.bg} flex items-center justify-center mb-4 shadow-inner`}>
-                  <step.icon className={`w-7 h-7 ${step.color}`} />
-                </div>
-                <h3 className="font-bold text-slate-800">{step.name}</h3>
-                <p className="text-slate-500 text-sm uppercase tracking-wide mt-1">{step.role}</p>
+                <GlowCard className="flex flex-col items-center relative bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-sm h-full">
+                  <div className={`w-14 h-14 rounded-xl ${step.bg} flex items-center justify-center mb-4 shadow-inner`}>
+                    <step.icon className={`w-7 h-7 ${step.color}`} />
+                  </div>
+                  <h3 className="font-bold text-slate-800">{step.name}</h3>
+                  <p className="text-slate-500 text-sm uppercase tracking-wide mt-1">{step.role}</p>
+                </GlowCard>
               </motion.div>
 
               {index < steps.length - 1 && (
-                <motion.div 
+                <motion.div
                   className="md:hidden text-slate-300"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -54,10 +56,10 @@ export const AICollaboration = () => {
                   <ArrowDown size={24} />
                 </motion.div>
               )}
-              
+
               {/* Arrow for Desktop */}
-               {index < steps.length - 1 && (
-                <motion.div 
+              {index < steps.length - 1 && (
+                <motion.div
                   className="hidden md:block text-slate-300 bg-white/50 rounded-full p-1"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -69,15 +71,15 @@ export const AICollaboration = () => {
             </React.Fragment>
           ))}
         </div>
-        
-        <motion.p 
-            className="text-center text-slate-500 mt-12 italic max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.8 }}
+
+        <motion.p
+          className="text-center text-slate-500 mt-12 italic max-w-2xl mx-auto"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.8 }}
         >
-            "A symphony of models, each playing its part in the creation."
+          "A symphony of models, each playing its part in the creation."
         </motion.p>
       </div>
     </section>
