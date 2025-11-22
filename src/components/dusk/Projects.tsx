@@ -1,7 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
-import { ArrowUpRight, Github, ExternalLink } from 'lucide-react';
+import { Github, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
@@ -33,7 +32,7 @@ export const Projects = () => {
   return (
     <section className="py-24 px-6">
       <div className="container max-w-6xl mx-auto">
-        <motion.h2 
+        <motion.h2
           className="text-4xl font-bold text-white mb-16 flex items-baseline gap-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +61,7 @@ export const Projects = () => {
                     alt={project.title}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  
+
                   {/* Floating Badge */}
                   <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-[#FF6B3D]/80 backdrop-blur border border-[#FF6B3D]/30 rounded-full text-xs text-white uppercase tracking-wider">
                     {project.category}
@@ -72,19 +71,19 @@ export const Projects = () => {
                 {/* Content */}
                 <div className="p-6 lg:p-8 relative flex flex-col">
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#FF6B3D]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  
+
                   <h3 className="text-2xl font-bold text-white mb-3 relative">
                     {project.title}
                   </h3>
-                  
+
                   <p className="text-gray-300 leading-relaxed mb-3 relative">
                     {project.description}
                   </p>
-                  
+
                   <p className="text-gray-400 leading-relaxed mb-2 relative">
                     {project.subDescription}
                   </p>
-                  
+
                   {project.extraDescription && (
                     <p className="text-gray-400 leading-relaxed mb-4 relative">
                       {project.extraDescription}
@@ -106,10 +105,10 @@ export const Projects = () => {
                   {/* Action Links */}
                   <div className="flex gap-4 relative">
                     {project.githubUrl && (
-                      <a 
-                        href={project.githubUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex items-center gap-2 text-white hover:text-[#FF6B3D] transition-colors duration-300 group/link"
                         style={{ cursor: 'none' }}
                       >
@@ -117,10 +116,10 @@ export const Projects = () => {
                       </a>
                     )}
                     {project.liveUrl && (
-                      <a 
-                        href={project.liveUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex items-center gap-2 text-white hover:text-[#FF6B3D] transition-colors duration-300 group/link"
                         style={{ cursor: 'none' }}
                       >

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
@@ -25,22 +25,16 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{
-            duration: 0.4,
-            exit: { duration: 0.55, ease: "easeIn" }
-          }}
+          exit={{ opacity: 0, transition: { duration: 0.55, ease: "easeIn" } }}
+          transition={{ duration: 0.4 }}
         >
           {/* Cinematic Loading Text */}
           <motion.div
             className="loading-text-gradient"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-              duration: 0.35,
-              exit: { duration: 0.55 }
-            }}
+            exit={{ opacity: 0, transition: { duration: 0.55 } }}
+            transition={{ duration: 0.35 }}
           >
             LOADING EXPERIENCE…
           </motion.div>

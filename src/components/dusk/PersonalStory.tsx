@@ -1,7 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
-// import portraitImage from 'figma:asset/5157b9e3b369212b8d0b70aad8ed753d7e261e87.png';
+// const portraitImage from 'figma:asset/5157b9e3b369212b8d0b70aad8ed753d7e261e87.png';
 const portraitImage = '/creator-avatar.png';
 
 export const PersonalStory = () => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ThemeProvider, useTheme } from './components/theme/ThemeContext';
 import { Layout } from './components/layout/Layout';
 import { LoadingScreen } from './components/layout/LoadingScreen';
