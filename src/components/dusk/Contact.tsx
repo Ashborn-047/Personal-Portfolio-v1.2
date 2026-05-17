@@ -10,7 +10,7 @@ export const Contact = () => {
     },
     {
       icon: Linkedin,
-      href: 'https://www.linkedin.com/in/bhattacharyya',
+      href: 'https://www.linkedin.com/in/pushan-bhattacharyya-40b718287/',
       label: 'LinkedIn'
     },
     {
