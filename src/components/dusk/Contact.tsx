@@ -15,7 +15,7 @@ export const Contact = () => {
     },
     {
       icon: Mail,
-      href: 'mailto:bhattacharyyapushan@gmail.com',
+      href: 'https://mail.google.com/mail/?view=cm&fs=1&to=bhattacharyyapushan2@gmail.com',
       label: 'Email'
     }
   ];
