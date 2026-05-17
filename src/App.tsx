@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ThemeProvider, useTheme } from './components/theme/ThemeContext';
 import { Layout } from './components/layout/Layout';
 import { LoadingScreen } from './components/layout/LoadingScreen';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Showcase App
+import ShowcaseApp from './showcase/App';
+
 // Dusk Components
 import { DuskHero } from './components/dusk/DuskHero';
 import { PersonalStory } from './components/dusk/PersonalStory';
-import { Projects } from './components/dusk/Projects';
+import { ShowcaseGateway } from './components/dusk/ShowcaseGateway';
 import { Principles } from './components/dusk/Principles';
 import { Insights } from './components/dusk/Insights';
 import { Contact } from './components/dusk/Contact';
@@ -22,7 +25,7 @@ import { AICollaboration } from './components/dawn/AICollaboration';
 import { InsightGenerator } from './components/dawn/InsightGenerator';
 import { ReflectionFooter } from './components/dawn/ReflectionFooter';
 
-const ContentSwitcher = () => {
+const ContentSwitcher = ({ navigate }: { navigate: (path: string) => void }) => {
   const { theme } = useTheme();
 
   return (
@@ -37,7 +40,7 @@ const ContentSwitcher = () => {
         >
           <DuskHero />
           <PersonalStory />
-          <Projects />
+          <ShowcaseGateway navigate={navigate} />
           <Principles />
           <Insights />
           <Contact />
@@ -66,6 +69,20 @@ const ContentSwitcher = () => {
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const [path, setPath] = useState(window.location.pathname);
+
+  const navigate = (newPath: string) => {
+    window.history.pushState({}, '', newPath);
+    setPath(newPath);
+  };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setPath(window.location.pathname);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   return (
     <ThemeProvider>
@@ -77,7 +94,11 @@ const App = () => {
       
       {!loading && (
         <Layout>
-          <ContentSwitcher />
+          {path === '/showcase' ? (
+            <ShowcaseApp navigate={navigate} />
+          ) : (
+            <ContentSwitcher navigate={navigate} />
+          )}
         </Layout>
       )}
     </ThemeProvider>
